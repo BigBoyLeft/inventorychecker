@@ -46,7 +46,6 @@ function scanInventory(Inventory: Inventory) {
   });
 }
 
-const database = await db();
 export const TableTypes: {
   table: string;
   identifier: string;
@@ -62,6 +61,7 @@ export const TableTypes: {
     columnLabel: "Player Account",
     func: async function (): Promise<ApiRow[]> {
       return new Promise(async (resolve, reject) => {
+        const database = await db();
         const results = await database
           ?.select({
             identifier: users.identifier,
@@ -109,6 +109,7 @@ export const TableTypes: {
       });
     },
     reset: async function (identifier: string) {
+      const database = await db();
       const user = await database
         ?.select({
           accounts: users.accounts,
@@ -146,6 +147,7 @@ export const TableTypes: {
     columnLabel: "Player Inventory",
     func: function (): Promise<ApiRow[]> {
       return new Promise(async (resolve, reject) => {
+        const database = await db();
         const results = await database
           ?.select({
             identifier: users.identifier,
@@ -184,6 +186,7 @@ export const TableTypes: {
       });
     },
     reset: async function (identifier: string) {
+      const database = await db();
       const user = await database
         ?.select({
           inventory: users.inventory,
@@ -221,6 +224,7 @@ export const TableTypes: {
     columnLabel: "Vehicle Glovebox",
     func: function (): Promise<ApiRow[]> {
       return new Promise(async (resolve, reject) => {
+        const database = await db();
         const results = await database
           ?.select({
             identifier: owned_vehicles.plate,
@@ -258,6 +262,7 @@ export const TableTypes: {
       });
     },
     reset: async function (identifier: string) {
+      const database = await db();
       const vehicle = await database
         ?.select({
           glovebox: owned_vehicles.glovebox,
@@ -294,6 +299,7 @@ export const TableTypes: {
     columnLabel: "Vehicle Trunk",
     func: function (): Promise<ApiRow[]> {
       return new Promise(async (resolve, reject) => {
+        const database = await db();
         const results = await database
           ?.select({
             identifier: owned_vehicles.plate,
@@ -331,6 +337,7 @@ export const TableTypes: {
       });
     },
     reset: async function (identifier: string) {
+      const database = await db();
       const vehicle = await database
         ?.select({
           trunk: owned_vehicles.trunk,
@@ -365,6 +372,7 @@ export const TableTypes: {
     columnLabel: "Inventory Stash",
     func: function (): Promise<ApiRow[]> {
       return new Promise(async (resolve, reject) => {
+        const database = await db();
         const results = await database
           ?.select({
             identifier: ox_inventory.name,
@@ -402,6 +410,7 @@ export const TableTypes: {
       });
     },
     reset: async function (identifier: string) {
+      const database = await db();
       const stash = await database
         ?.select({
           data: ox_inventory.data,
